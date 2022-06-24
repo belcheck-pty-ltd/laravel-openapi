@@ -14,8 +14,10 @@ class SchemaHelpers
                 return Schema::integer();
             case 'bool':
                 return Schema::boolean();
-        }
+            case 'string':
+                return Schema::string();
+            }
 
-        return Schema::string();
+        return Schema::integer();
     }
 }
