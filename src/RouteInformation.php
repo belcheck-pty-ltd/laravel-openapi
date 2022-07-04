@@ -66,7 +66,7 @@ class RouteInformation
 
             if (count($parameters) > 0) {
                 $parameters = $parameters->map(static fn ($parameter) => [
-                    'name' => Str::replaceLast('?', '', $parameter),
+                    'name' => Str::replaceLast('?', '', $parameter . ":id"),
                     'required' => ! Str::endsWith($parameter, '?'),
                 ]);
             }
@@ -85,7 +85,7 @@ class RouteInformation
 
             $instance->domain = $route->domain();
             $instance->method = $method;
-            $instance->uri = Str::start($route->uri(), '/');
+			$instance->uri = Str::start(preg_replace('/{(.*?)}/', '{${1}:id}', $route->uri), '/');
             $instance->name = $route->getName();
             $instance->controller = $controller;
             $instance->parameters = $parameters;
