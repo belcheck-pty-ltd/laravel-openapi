@@ -27,7 +27,7 @@ class ParametersBuilder
     {
         return collect($route->parameters)
             ->map(static function (array $parameter) use ($route) {
-                $schema = Schema::string();
+                $schema = Schema::integer();
 
                 /** @var ReflectionParameter|null $reflectionParameter */
                 $reflectionParameter = collect($route->actionParameters)
